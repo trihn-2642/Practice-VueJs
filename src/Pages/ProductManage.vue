@@ -65,7 +65,6 @@
 <script>
 import FormModal from "@/components/FormModal.vue";
 import { mapGetters } from "vuex";
-import { toastMsg } from "@/utils/toastMsg";
 
 export default {
   components: {
@@ -106,10 +105,8 @@ export default {
     handleSubmit: function (product) {
       if (product.id === 0) {
         this.$store.dispatch("AddProduct", { ...product });
-        toastMsg("Thêm sản phẩm thành công", "success");
       } else {
         this.$store.dispatch("UpdateProduct", { ...product });
-        toastMsg("Cập nhật sản phẩm thành công", "success");
       }
     },
     handleEditProduct: function (product) {
@@ -205,12 +202,15 @@ export default {
             &:nth-child(2) {
               width: 30%;
             }
+
             &:nth-child(3) {
               width: 20%;
             }
+
             &:nth-child(4) {
               width: 15%;
             }
+
             &:last-child {
               width: 15%;
             }
@@ -238,6 +238,7 @@ export default {
 
     .el-pagination {
       margin-top: 0.5rem;
+
       .el-pager {
         li {
           border: 1px solid #ccc;
@@ -248,6 +249,7 @@ export default {
           margin-right: 0.25rem;
         }
       }
+
       button {
         border: 1px solid #ccc;
         border-radius: 50%;
