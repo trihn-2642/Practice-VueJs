@@ -13,6 +13,15 @@ const getters = {
 const actions = {
     addCart({commit}, cartProduct){
         commit('ADD_CART', cartProduct);
+    },
+    changeQuantity({commit}, payload){
+        commit('CHANGE_QUANTITY', payload);
+    },
+    removeProductInCart({commit}, index){
+        commit('REMOVE_PRODUCT_IN_CART', index);
+    },
+    pay({commit}){
+        commit('PAY');
     }
 }
 
@@ -28,6 +37,35 @@ const mutations = {
         localStorage.setItem(CART, JSON.stringify(cart));
         toastMsg("Đã thêm sản phẩm vào giỏ hàng", "success");
         return {...cart};
+    },
+    CHANGE_QUANTITY(state, payload){
+        const {index, quantity} = payload;
+        const {cart} = state;
+        const newCart = cart.map((c, i )=> {
+            if(i === index){
+                return {
+                    ...c,
+                    quantity
+                }
+            }else{
+                return c;
+            }
+        })
+        localStorage.setItem(CART, JSON.stringify(newCart));
+        return {...newCart};
+    },
+    REMOVE_PRODUCT_IN_CART(state, index){
+        const {cart} = state;
+        const checkIndex = cart.some((c,i) => i === index);
+        if(checkIndex){
+            cart.splice(index, 1);     
+        }
+        localStorage.setItem(CART, JSON.stringify(cart));
+        return {...cart};
+    },
+    PAY(state){
+        state.cart = [];
+        localStorage.removeItem(CART);
     }
 }
 
