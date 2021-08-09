@@ -49,7 +49,6 @@ const mutations = {
         return {...products}
     },
     REMOVE_PRODUCT(state, id){
-        console.log(id);
         const {products} = state;
         const index = products.findIndex(p => p.id === id);
         products.splice(index, 1);

@@ -22,6 +22,9 @@
 import { mapGetters } from "vuex";
 import ListItem from "@/components/ListItem.vue";
 export default {
+  beforeCreate() {
+    document.title = "Trang Chủ";
+  },
   computed: {
     ...mapGetters(["products", "count"]),
   },

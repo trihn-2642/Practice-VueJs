@@ -67,6 +67,9 @@ import FormModal from "@/components/FormModal.vue";
 import { mapGetters } from "vuex";
 
 export default {
+  beforeCreate() {
+    document.title = "Quản Lý Sản Phẩm";
+  },
   components: {
     FormModal,
   },
@@ -148,6 +151,9 @@ export default {
       this.$store.dispatch("changePage", page);
       window.scrollTo(0, 0);
     },
+  },
+  destroyed() {
+    this.$store.dispatch("changePage", 1);
   },
 };
 </script>
