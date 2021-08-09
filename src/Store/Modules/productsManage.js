@@ -1,4 +1,6 @@
 import {PRODUCTS} from '@/Constants';
+import { toastMsg } from "@/utils/toastMsg";
+
 const state = {
     products: JSON.parse(localStorage.getItem(PRODUCTS)) || []
 }
@@ -29,6 +31,7 @@ const mutations = {
         }
         products.unshift(product);
         localStorage.setItem(PRODUCTS, JSON.stringify(products));
+        toastMsg("Thêm sản phẩm thành công", "success");
         return {...products}
     },
     UPDATE_PRODUCT(state, product){
@@ -41,6 +44,7 @@ const mutations = {
             productFind.sizes = product.sizes;
 
             localStorage.setItem(PRODUCTS, JSON.stringify(products));
+            toastMsg("Cập nhật sản phẩm thành công", "success");
         }
         return {...products}
     },
